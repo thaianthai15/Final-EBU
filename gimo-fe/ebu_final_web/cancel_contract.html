@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    <link rel="stylesheet" href="/assets/style.css">
+    <title>Cancel contract</title>
+    </head>
+    <body>
+        <main class="container-form-cancel-contract">
+            <div class="form-cancel-contract">
+                <h2>Cancel contract</h2>
+                <div class="form-header">
+                    <div class="input-group-half"> <div>
+                            <label for="name">Name</label>
+                            <input type="text" placeholder="Name" required id="name">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" placeholder="Email" required id="email">
+                        </div>
+                    </div>
+                    <p>Enter your name exactly as written on your ID</p>
+                </div>
+                                
+            <div class="form-footer">
+                <h3>Type of termination</h3>
+                <div class="form-sorted-by">
+
+                        <ul>
+
+                            <li>
+
+                                <input class="custom-radio" id="form-cancel" type="radio" checked="checked" name="radio">
+
+                                <label for="form-cancel">Extraordinary</label>
+
+                            </li>
+
+                            <li>
+
+                                <input class="custom-radio" id="form-cancel-1" type="radio" name="radio">
+
+                                <label for="form-cancel-1">Ordinary</label>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+                <div class="sub-form-footer">
+                    <form action="#" method="POST"> 
+                        <div class="input-group-half">
+                            <div>
+                                <label for="subcription">Subscription ID</label>
+                                <input type="text" placeholder="Subscription ID" required id="subcription">
+                            </div>
+                            
+                            <div class="sub-termination">
+                                <label for="termination">Termination date</label>
+                                <input type="text" placeholder="Termination date" required id="termination">
+                                <svg data-testid="svg-calendar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M16 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4"></path>
+                                    <path fill="currentColor" fill-rule="evenodd" d="M9 3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3h-2V3a1 1 0 1 0-2 0v1H9zm7 4a1 1 0 0 1-1-1H9a1 1 0 0 1-2 0H5a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1h-2a1 1 0 0 1-1 1M4 19v-9h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <label for="termination-reason">Termination reason</label>
+                        <textarea placeholder="Termination reason" required id="termination-reason"></textarea>
+                        
+                        <div class="cf-status-container"> 
+                            
+                            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+                                <div class="cf-turnstile"
+                                    data-sitekey="0x4AAAAAAAZC94IX7Co6naKo"></div>
+                        
+                    </form>
+                </div>
+                <button id="btn-cancel-contract">Cancel now</button>
+            </div>
+            </div>
+        </main>
+    </body>
+    </html>
