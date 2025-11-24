@@ -180,8 +180,9 @@ button {
 #Signup {
   background: #4C8787;
   color: white;
-  width: 70%;
+  width: fit-content;
   align-self: center;
+  white-space: nowrap;
 }
 
 #Signup:hover {
@@ -782,6 +783,7 @@ main {
     margin-bottom: 80px;
     -ms-overflow-style: none; 
     scrollbar-width: none; 
+    margin-top: 20px;
 }
 
 .review-box::-webkit-scrollbar {
@@ -4009,5 +4011,125 @@ input[type="checkbox"] + label::before {
     }
 }
 
+.footer-bottom-cancel-contract {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 40px;
+    border-top: 1px solid #e5e5e5; 
+    font-size: 14px;
+    color: #333;
+    margin-top: 50px;
+    width: 100%
+}
 
+.bottom-left-cancel-contract p {
+    margin: 0;
+    color: #333;
+}
 
+.bottom-links-cancel-contract {
+    display: flex;
+    gap: 30px; 
+}
+
+.bottom-links-cancel-contract a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s ease;
+    font-size: 14px;
+}
+
+.bottom-links-cancel-contract a:hover {
+    color: #000; 
+}
+#footer-placeholder {
+    width: 100%;
+    height: 500px;
+}
+
+.faq-gimo-business {
+    width: 100%;
+    max-width: 900px; 
+    margin: 60px auto; 
+}
+.faq-gimo-business details {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 100%; 
+}
+.faq-gimo-business h1 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center; 
+    margin-bottom: 50px; 
+}
+.faq-gimo-business summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 38px 0;
+    font-size: 25px;
+    font-weight: 700;
+    color: #1a1a1a;
+    list-style: none; 
+    position: relative;
+    user-select: none;
+}
+
+.faq-gimo-business summary::-webkit-details-marker {
+    display: none;
+}
+.faq-gimo-business summary::marker {
+    display: none;
+}
+
+.faq-gimo-business .icon-plus {
+    fill: #1a1a1a;
+    transition: transform 0.3s;
+    flex-shrink: 0; 
+    font-size: 40px;
+}
+
+.faq-gimo-business details[open] .icon-plus {
+    transform: rotate(45deg); 
+}
+
+.faq-gimo-business details[open] {
+    border-bottom: none; 
+    padding-bottom: 0; 
+    margin-top: -1px; 
+    position: relative; 
+    z-index: 10;
+}
+
+.faq-content-gimo-business {
+    width: 100%; 
+    background-color: #e4e1e1;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    padding: 25px;
+    padding-right: 50px; 
+    margin-top: 10px;
+    margin-bottom: 20px; 
+    position: relative;
+    box-sizing: border-box; 
+}
+
+.faq-content-gimo-business p {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.faq-content-gimo-business a {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+}
+.faq-content-gimo-business a:hover {
+    text-decoration: underline;
+}

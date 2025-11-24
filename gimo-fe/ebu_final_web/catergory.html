@@ -4,8 +4,8 @@
     <meta charset="utf-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-    <link rel="stylesheet" href="/assets/style.css">
-    <script src="../assets/js/monthly_price.js"></script>
+    <link rel="stylesheet" href="/gimo-fe/ebu_final_web/assets/style.css">
+    <script src="../ebu_final_web/assets/js/monthly_price.js"></script>
     <title>Category</title>
     </head>
     <body>
@@ -1935,5 +1935,13 @@
         </section>
     </div>
     </div>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch("/gimo-fe/ebu_final_web/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
     </body>
 </html>

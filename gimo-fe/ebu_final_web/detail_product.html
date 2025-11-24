@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Detail</title>
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/gimo-fe/ebu_final_web/assets/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -44,11 +44,11 @@
         <img  src="https://res.cloudinary.com/grover/image/upload/e_trim/f_webp,q_auto/b_white,c_pad,h_300,w_300/f_auto,q_auto/v1747654497/grr7i5aoaa16ez5koohv.png" alt="PlayStation 5 Pro" />
       </div>
       <div class="thumbs">
-        <img src="/assets/images/pic14.webp" alt="detail-product">
-        <img src="/assets/images/pic15.webp" alt="detail-product">
-        <img src="/assets/images/pic16.webp" alt="detail-product">
-        <img src="/assets/images/pic17.webp" alt="detail-product">
-        <img src="/assets/images/pic18.webp" alt="detail-product">
+        <img src="/gimo-fe/ebu_final_web/assets/images/pic14.webp" alt="detail-product">
+        <img src="/gimo-fe/ebu_final_web/assets/images/pic15.webp" alt="detail-product">
+        <img src="/gimo-fe/ebu_final_web/assets/images/pic16.webp" alt="detail-product">
+        <img src="/gimo-fe/ebu_final_web/assets/images/pic17.webp" alt="detail-product">
+        <img src="/gimo-fe/ebu_final_web/assets/images/pic18.webp" alt="detail-product">
       </div>
       <div class="product-favorite">
                     <button 
@@ -193,11 +193,11 @@
       <p>No deposit. Small, secure payments. <a href="#">Learn more</a></p>
       <div class="footer-middle">
       <div class="payment-icons">
-        <img src="/assets/images/Mastercard-logo.png" alt="Mastercard">
-        <img src="/assets/images/visa.png" alt="Visa">
-        <img src="/assets/images/Paypal-Logo-2022.png" alt="PayPal">
-        <img src="/assets/images/vnpay.png" alt="vnpay">
-        <img src="/assets/images/momo.png" alt="momo">
+        <img src="/gimo-fe/ebu_final_web/assets/images/Mastercard-logo.png" alt="Mastercard">
+        <img src="/gimo-fe/ebu_final_web/assets/images/visa.png" alt="Visa">
+        <img src="/gimo-fe/ebu_final_web/assets/images/Paypal-Logo-2022.png" alt="PayPal">
+        <img src="/gimo-fe/ebu_final_web/assets/images/vnpay.png" alt="vnpay">
+        <img src="/gimo-fe/ebu_final_web/assets/images/momo.png" alt="momo">
       </div>
     </div>
     </div>
@@ -265,7 +265,7 @@
             <div class="faq-content">
                 <p>We want you to enjoy our products as though they were yours. Small scratches and normal signs of use will be cleaned after return for free. There are no charges for device errors from the manufacturer.
 
-                    In case of severe damage, Gimo Care covers up to 80% of damages for all rental categories. Add Grover Care to your rental for better protection.
+                    In case of severe damage, Gimo Care covers up to 80% of damages for all rental categories. Add Gimo Care to your rental for better protection.
 
                     Check out our example photos of normal signs of use that we repair for free and also photos of more severe damage. Learn more about <a href="#">Gimo Care </a>.</p>
             </div>
@@ -739,5 +739,13 @@ You can drop the device off at any post office or drop-off point of the shipping
             </a>
         </section>
 </div>
+<div id="footer-placeholder"></div>
+    <script>
+        fetch("/gimo-fe/ebu_final_web/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

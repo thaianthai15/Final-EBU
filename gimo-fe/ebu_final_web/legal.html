@@ -4,38 +4,38 @@
     <meta charset="utf-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/gimo-fe/ebu_final_web/assets/style.css">
     <title>Legal</title>
     </head>
     <body>
-        <h1>Grover Legal Resources</h1>
+        <h1>Gimo Legal Resources</h1>
         <div class="box-5">
             <div class="legal-1">
-            <img  class="img-legal" src="/assets/images/pic8.webp" alt="pic-out">
+            <img  class="img-legal" src="/gimo-fe/ebu_final_web/assets/images/pic8.webp" alt="pic-out">
             <h3>Individuals</h3>
-            <p>Here you can find Grover's terms of use applicable to the services and products between Grover and consumers who are the end-users of the products or services. These are the main terms covering your rights, responsibilities and obligations as well as Grover’s when you use our services.</p>
+            <p>Here you can find Gimo's terms of use applicable to the services and products between Gimo and consumers who are the end-users of the products or services. These are the main terms covering your rights, responsibilities and obligations as well as Gimo’s when you use our services.</p>
             <p><a href="#">Term of Use for individuals</a></p>
             <p><a href="#">Term of Use for Digital products</a></p>
         </div>
         <div class="legal-1">
-            <img class="img-legal" src="/assets/images/pic7.webp" alt="pic7">
+            <img class="img-legal" src="/gimo-fe/ebu_final_web/assets/images/pic7.webp" alt="pic7">
             <h3>Business</h3>
-            <p>Here you can find Grover's terms of use and the data processing agreement including Grover's security measures applicable to the business services and products for business customers.</p>
+            <p>Here you can find Gimo's terms of use and the data processing agreement including Gimo's security measures applicable to the business services and products for business customers.</p>
             <p><a href="#">Term of Use for Business Customers</a></p>
             <p><a href="#">Business Premium Data Processing Agreement</a></p>
         </div>
         <div class="legal-1">
-            <img class="img-legal" src="/assets/images/pic6.webp" alt="pic-out">
+            <img class="img-legal" src="/gimo-fe/ebu_final_web/assets/images/pic6.webp" alt="pic-out">
             <h3>Privacy</h3>
-            <p>Whenever you fill in a form on our site, whether you are placing an order, requesting sales information or applying to a job through Grover, you are providing us with personal data, and below you can find these policies that govern how and when we can collect, use and disclose this data.</p>
+            <p>Whenever you fill in a form on our site, whether you are placing an order, requesting sales information or applying to a job through Gimo, you are providing us with personal data, and below you can find these policies that govern how and when we can collect, use and disclose this data.</p>
             <p><a href="#">Privacy Webform for Your Privacy Requests - data deletion & account closure and more!</a></p>
             <p><a href="#">Privacy Policy for Individuals and Business Customers</a></p>
             <p><a href="#">Cookie Policy</a></p>
         </div>
         <div class="legal-1">
-            <img class="img-legal" src="/assets/images/pic9.webp" alt="pic9">
+            <img class="img-legal" src="/gimo-fe/ebu_final_web/assets/images/pic9.webp" alt="pic9">
             <h3>ESG</h3>
-            <p>Here you can find our Supplier Code of Conduct providing principles to guide Grover, our Suppliers and Business Partners in our joint effort to grow our businesses in a fair and sustainable way globally.</p>
+            <p>Here you can find our Supplier Code of Conduct providing principles to guide Gimo, our Suppliers and Business Partners in our joint effort to grow our businesses in a fair and sustainable way globally.</p>
             <p><a href="#">Supplier Code of Conduct</a></p>
         </div>
         </div>
@@ -50,7 +50,7 @@
                 </svg>
             </summary>
             <div class="faq-content">
-            <p>Grover rents new and as good as new products. Before products are rented out again, they go through a detailed quality check and multi-stage processing, so that each device rented from Grover arrives in flawless condition. If your device isn’t as expected, our customer service is happy to help. <a href="#">Learn more about our Great Condition Promise.</a></p>
+            <p>Gimo rents new and as good as new products. Before products are rented out again, they go through a detailed quality check and multi-stage processing, so that each device rented from Gimo arrives in flawless condition. If your device isn’t as expected, our customer service is happy to help. <a href="#">Learn more about our Great Condition Promise.</a></p>
             </div>
             </details>
             <details>
@@ -72,7 +72,7 @@
             </svg>
         </summary>
         <div class="faq-content">
-            <p>If something happens during your rental, Grover Care is there for you. We pay for 80% of the repair costs for damages of all kinds, including display breakage, water damage, and technical defects. Of course there are no charges for device errors from the manufacturer. <a href="#">Learn more about Grover Care</a></p>
+            <p>If something happens during your rental, Gimo Care is there for you. We pay for 80% of the repair costs for damages of all kinds, including display breakage, water damage, and technical defects. Of course there are no charges for device errors from the manufacturer. <a href="#">Learn more about Gimo Care</a></p>
         </div>
     </details>
             <details>
@@ -83,10 +83,18 @@
             </svg>
         </summary>
         <div class="faq-content">
-            <p>Don’t worry, we want you to enjoy your products as though they were yours. Small scratches and normal signs of use will be cleaned after return for free. In case of severe signs of wear, such as display breakage, Grover Care covers 80% of the repair costs. <a href="#">Here you'll find example photos</a> of normal signs of use that we repair for free and also photos of more severe damage where you'd have to pay 20% of the repair cost.</p>
+            <p>Don’t worry, we want you to enjoy your products as though they were yours. Small scratches and normal signs of use will be cleaned after return for free. In case of severe signs of wear, such as display breakage, Gimo Care covers 80% of the repair costs. <a href="#">Here you'll find example photos</a> of normal signs of use that we repair for free and also photos of more severe damage where you'd have to pay 20% of the repair cost.</p>
         </div>
     </details>
             <button id="btn-faq">Show all FAQs</button>
 </section>
+<div id="footer-placeholder"></div>
+    <script>
+        fetch("/gimo-fe/ebu_final_web/footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
     </body>
     </html>
