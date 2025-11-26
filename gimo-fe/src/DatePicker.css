@@ -1,0 +1,78 @@
+/* src/components/DatePicker.css */
+
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: #0d3d3d; /* Màu nền khi hover */
+  --rdp-background-color: #0f766e; /* Màu nền khi được chọn */
+  
+  --rdp-accent-color-dark: var(--rdp-accent-color);
+  --rdp-background-color-dark: var(--rdp-background-color);
+
+  margin: 1em 0;
+  font-family: inherit;
+}
+
+/* Header (Tháng, Năm) */
+.rdp-caption_label {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+.rdp-caption {
+  margin-bottom: 1em;
+  padding: 0 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nút điều hướng tháng */
+.rdp-nav_button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+}
+.rdp-nav_button:hover {
+  background-color: #e5e7eb;
+}
+
+
+/* Tên các ngày trong tuần */
+.rdp-head_cell {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+}
+.rdp-head_cell[aria-label="Chủ Nhật"] {
+  color: #ef4444; /* Màu đỏ cho Chủ Nhật */
+}
+
+
+/* Các ô ngày */
+.rdp-day {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Ô ngày được chọn */
+.rdp-day_selected {
+  background-color: #0f766e !important;
+  color: white !important;
+  font-weight: bold;
+}
+.rdp-day_selected:hover {
+  background-color: #0d6b62 !important;
+}
+
+/* Ngày Chủ Nhật */
+.rdp-day:nth-child(7n) {
+  color: #ef4444;
+}
+
+/* Ngày hôm nay (ví dụ: gạch chân) */
+.rdp-day_today {
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
