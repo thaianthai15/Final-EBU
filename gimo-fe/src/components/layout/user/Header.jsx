@@ -1,17 +1,20 @@
-// src/components/Header.jsx
-import React, { useState } from "react"; // Bước 1: Import useState
+// src/components/layout/user/Header.jsx
+import React, { useState, useEffect } from "react";
 import {
   IoSearchOutline,
   IoNotificationsOutline,
   IoCartOutline,
   IoPersonOutline,
   IoMenu,
+  IoLogOutOutline,
+  IoPersonCircleOutline
 } from "react-icons/io5";
 
 import GimoLogo from "../../../assets/images/gimo-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const navLinks = [
     "Phones & Tablets",
     "Gaming & VR",
@@ -24,11 +27,38 @@ const Header = () => {
     { text: "Deals %", path: "/deals" },
   ];
 
-  // Bước 2: Tạo state để quản lý việc hiển thị menu
+  // --- STATE QUẢN LÝ ---
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // Giả sử chúng ta có state để kiểm tra đăng nhập
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState(null); // Lưu thông tin chi tiết user
+
+  // 1. Kiểm tra trạng thái đăng nhập & Lấy thông tin User khi load trang
+  useEffect(() => {
+    // Lấy trạng thái đăng nhập
+    const loggedInStatus = localStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(loggedInStatus);
+
+    // Lấy thông tin user hiện tại (nếu có)
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      setUserInfo(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // 2. Hàm xử lý đăng xuất
+  const handleLogout = () => {
+    // Xóa toàn bộ dữ liệu phiên làm việc
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("currentUser");
+    
+    // Reset state
+    setIsLoggedIn(false);
+    setUserInfo(null);
+    setIsMenuOpen(false); // Đóng menu
+    
+    navigate("/login"); // Chuyển về trang login
+  };
 
   return (
     <header className="bg-white sticky top-0 z-50">
@@ -41,7 +71,7 @@ const Header = () => {
                 <img
                   src={GimoLogo}
                   alt="GIMO Logo"
-                  className="h-[150px] w-auto" // Các class CSS vẫn được giữ nguyên
+                  className="h-[150px] w-auto"
                 />
               </Link>
             </div>
@@ -68,37 +98,91 @@ const Header = () => {
               <Link to="/cart-page">
                 <IoCartOutline className="h-6 w-6 cursor-pointer text-gray-600 hover:text-black" />
               </Link>
-              {/* Bước 3: Bọc icon User và Dropdown vào một div chung */}
+
+              {/* --- USER ICON & DROPDOWN --- */}
               <div
                 className="relative"
                 onMouseEnter={() => setIsMenuOpen(true)}
                 onMouseLeave={() => setIsMenuOpen(false)}
               >
-                <IoPersonOutline className="h-6 w-6 cursor-pointer text-gray-600 hover:text-black" />
+                {/* Link dẫn đến Account nếu đã login, ngược lại về Login */}
+                <Link to={isLoggedIn ? "/account" : "/login"}>
+                    <IoPersonOutline 
+                      className={`h-6 w-6 cursor-pointer hover:text-black transition-colors ${isLoggedIn ? "text-[#4C8787]" : "text-gray-600"}`} 
+                    />
+                </Link>
 
-                {/* Bước 4: Render có điều kiện menu dropdown */}
-                {isMenuOpen && !isLoggedIn && (
+                {/* --- MENU DROPDOWN --- */}
+                {isMenuOpen && (
                   <div className="absolute top-4 right-0 mt-3 w-72 bg-white border border-gray-200 rounded-xl shadow-lg p-5 z-20 text-center">
-                    <p className="font-semibold text-gray-800 mb-4">
-                      Welcome to Gimo !
-                    </p>
-                    <div className="flex items-center gap-3 mb-4">
-                      <button className="flex-1 bg-[#4C8787] text-white font-semibold px-4 py-2 rounded-full hover:bg-teal-700 transition">
-                        Sign up
-                      </button>
-                      <button className="flex-1 border border-gray-400 text-gray-800 font-semibold px-4 py-2 rounded-full hover:bg-gray-100 transition">
-                        Log in
-                      </button>
-                    </div>
-                    <a
-                      href="#"
-                      className="text-sm text-gray-600 hover:text-black underline"
+                    
+                    {/* TRƯỜNG HỢP 1: CHƯA ĐĂNG NHẬP */}
+                    {!isLoggedIn ? (
+                      <>
+                        <p className="font-semibold text-gray-800 mb-4">
+                          Welcome to Gimo !
+                        </p>
+                        <div className="flex items-center gap-3 mb-4">
+                          <Link to="/signup" className="flex-1">
+                            <button className="w-full bg-[#4C8787] text-white font-semibold px-4 py-2 rounded-full hover:bg-teal-700 transition">
+                              Sign up
+                            </button>
+                          </Link>
+                          <Link to="/login" className="flex-1">
+                            <button className="w-full border border-gray-400 text-gray-800 font-semibold px-4 py-2 rounded-full hover:bg-gray-100 transition">
+                              Log in
+                            </button>
+                          </Link>
+                        </div>
+                      </>
+                    ) : (
+                      /* TRƯỜNG HỢP 2: ĐÃ ĐĂNG NHẬP */
+                      <div className="flex flex-col gap-2">
+                        {/* Hiển thị Tên người dùng */}
+                        <p className="font-bold text-gray-800 text-lg mb-0 truncate">
+                          Hi, {userInfo?.firstName} {userInfo?.lastName}
+                        </p>
+                        
+                        {/* Hiển thị Email người dùng */}
+                        <p className="text-xs text-gray-500 mb-4 truncate">
+                          {userInfo?.email}
+                        </p> 
+                        
+                        <Link to="/account" className="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 rounded-lg transition-colors text-left text-gray-700">
+                            <IoPersonCircleOutline size={20} />
+                            <span>My Account</span>
+                        </Link>
+                        
+                        {/* Kiểm tra quyền Admin dựa trên localStorage hoặc userInfo */}
+                        {localStorage.getItem('userRole') === 'ADMIN' && (
+                             <Link to="/admin" className="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 rounded-lg transition-colors text-left text-gray-700">
+                                <IoPersonOutline size={20} />
+                                <span>Admin Dashboard</span>
+                            </Link>
+                        )}
+
+                        <div className="border-t border-gray-100 my-1"></div>
+
+                        <button 
+                            onClick={handleLogout}
+                            className="flex items-center gap-3 px-4 py-2 hover:bg-red-50 text-red-600 rounded-lg transition-colors text-left w-full"
+                        >
+                            <IoLogOutOutline size={20} />
+                            <span>Log out</span>
+                        </button>
+                      </div>
+                    )}
+
+                    <Link
+                      to="/help-center"
+                      className="block mt-4 text-sm text-gray-600 hover:text-black underline"
                     >
                       Help Center
-                    </a>
+                    </Link>
                   </div>
                 )}
-              </div>{" "}
+              </div>
+              
               <IoMenu className="h-6 w-6 cursor-pointer text-gray-600 hover:text-black" />
             </div>
           </div>
@@ -112,7 +196,7 @@ const Header = () => {
             All categories
           </a>
           {navLinks.map((link) => (
-            <a key={link} href="#" className="text-gray-600 hover:text-black">
+            <a key={link} href="/category" className="text-gray-600 hover:text-black">
               {link}
             </a>
           ))}

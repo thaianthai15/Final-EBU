@@ -14,32 +14,32 @@ import {
 
 // Dữ liệu cho các cột link để dễ quản lý
 const companyLinks = [
-  { name: "About us", href: "#" },
-  { name: "Help Center", href: "#" },
+  { name: "About us", href: "/gimo-business" },
+  { name: "Help Center", href: "/help-center" },
   { name: "Jobs", href: "#" },
-  { name: "Blog", href: "#" },
+  { name: "Blog", href: "/blog" },
   { name: "Press", href: "#" },
-  { name: "Reviews", href: "#" },
+  { name: "Reviews", href: "/reviews" },
 ];
 
 const offeringsLinks = [
-  { name: "Top Products", href: "#" },
-  { name: "Deals %", href: "#" },
+  { name: "Top Products", href: "/top-products" },
+  { name: "Deals %", href: "/deals" },
   { name: "Affiliates program", href: "#" },
   { name: "Invite Friends", href: "#" },
-  { name: "Student Discount", href: "#" },
-  { name: "Discount vouchers", href: "#" },
+  { name: "Student Discount", href: "/discount" },
+  { name: "Discount vouchers", href: "/discount" },
   { name: "Military discount", href: "#" },
   { name: "Black Friday", href: "#" },
 ];
 
 const infoLinks = [
-  { name: "How It Works", href: "#" },
+  { name: "How It Works", href: "/how-it-work" },
   { name: "Great Condition Promise", href: "#" },
-  { name: "Grover Care", href: "#" },
+  { name: "Gimo Care", href: "/gimo-care" },
   { name: "Sustainability", href: "#" },
-  { name: "Legal", href: "#" },
-  { name: "Cancel contract", href: "#" },
+  { name: "Legal", href: "/legal" },
+  { name: "Cancel contract", href: "/cancel-contract" },
 ];
 
 // Component cho mỗi cột link
