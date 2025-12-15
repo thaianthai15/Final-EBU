@@ -43,6 +43,12 @@ import ProductDetailPage from "./pages/User/ProductDetailPage";
 import PaymentsPage from "./pages/Admin/Payment";
 import ProductsPage from "./pages/Admin/Products";
 import Users from "./pages/Admin/Users";
+import RentNowPage from "./pages/User/RentNowPage";
+import PhonesTabletsPage from "./pages/User/PhonesTabletsPage";
+import GamingVRPage from "./pages/User/GamingVRPage";
+import CamerasPage from "./pages/User/CamerasPage";
+import AudioMusicPage from "./pages/User/AudioMusicPage";
+import ApplePage from "./pages/User/ApplePage";
 
 function App() {
   return (
@@ -53,6 +59,14 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUp />} />
+
+          <Route path="/brand/apple" element={<ApplePage />} />
+
+          <Route path="/rent-now" element={<RentNowPage />} /> 
+          <Route path="/phones-tablets" element={<PhonesTabletsPage />} />
+          <Route path="/gaming-vr" element={<GamingVRPage />} />
+          <Route path="/cameras" element={<CamerasPage />} />
+          <Route path="/audio-music" element={<AudioMusicPage />} />
 
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/account" element={<AccountPage />} />

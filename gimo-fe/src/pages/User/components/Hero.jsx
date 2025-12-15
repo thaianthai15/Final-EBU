@@ -7,6 +7,7 @@ import orangeIphone from "../../../assets/images/orange-iphone.png";
 import airpodsPro from "../../../assets/images/airpods-pro.png";
 import headphoneCombo from "../../../assets/images/headphone-combo.png";
 import appleLineup from "../../../assets/images/apple-lineup.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -23,9 +24,11 @@ const Hero = () => {
               iPhone Air is the thinnest. Plus, there are brand-new Apple
               Watches and AirPods Pro 3.
             </p>
-            <button className="mt-8 bg-[#4C8787] text-white font-semibold px-8 py-3 rounded-full hover:bg-teal-700 transition-colors">
-              Rent now
-            </button>
+            <Link to="/rent-now">
+              <button className="mt-8 bg-[#4C8787] text-white font-semibold px-8 py-3 rounded-full hover:bg-teal-700 transition-colors">
+                Rent now
+              </button>
+            </Link>
           </div>
           <div className="lg:w-2/3 flex-1">
             {/* 
