@@ -1,21 +1,37 @@
-// src/pages/Admin/OrdersPage.js
-
 import React, { useState, useEffect } from 'react';
-import { FunnelIcon, MagnifyingGlassIcon, EyeIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { 
+  IoSearchOutline, 
+  IoFilterOutline, 
+  IoEyeOutline, 
+  IoCloseOutline, 
+  IoPrintOutline, 
+  IoCheckmarkDoneCircleOutline,
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
+  IoCalendarOutline
+} from "react-icons/io5";
+import { FaTruckLoading } from "react-icons/fa";
 
-// Dữ liệu giả lập cho bảng đơn hàng
+// Dữ liệu giả lập
 const mockOrders = [
-  { orderCode: 'GM-00124', userName: 'Nguyen Van Thang', phoneNumber: '0376533590', product: 'iPhone Air 2', rentalPeriod: '01/03 - 31/03/2025', rentalStatus: 'In Rental', paymentStatus: 'Deposit Only' },
-  { orderCode: 'GM-22512', userName: 'Nguyen Van Hoang', phoneNumber: '0387690331', product: 'Nintendo Switch 2', rentalPeriod: '01/02 - 31/02/2025', rentalStatus: 'Shipping', paymentStatus: 'Deposit Only' },
-  { orderCode: 'GM-03204', userName: 'Nguyen Minh Anh', phoneNumber: '0385201625', product: 'Playstation 5 Pro', rentalPeriod: '05/01 - 05/02/2025', rentalStatus: 'Shipping', paymentStatus: 'Paid' },
-  { orderCode: 'GM-65784', userName: 'Nguyen Anh Duc', phoneNumber: '0328749236', product: 'DJI Osmo Pocket 3', rentalPeriod: '10/11 - 10/12/2024', rentalStatus: 'Delivered', paymentStatus: 'Paid' },
-  { orderCode: 'GM-10360', userName: 'Tran Kim Oanh', phoneNumber: '0376532810', product: 'Gopro HERO 11', rentalPeriod: '20/10 - 20/12/2024', rentalStatus: 'Pending Return', paymentStatus: 'Deposit Only' },
-  { orderCode: 'GM-09014', userName: 'Ha Nho Linh', phoneNumber: '0392995454', product: 'iPhone 17 Pro - 256GB', rentalPeriod: '05/09 - 05/10/2024', rentalStatus: 'Returned', paymentStatus: 'Deposit Only' },
-  { orderCode: 'GM-56039', userName: 'Nguyen Van Minh', phoneNumber: '0393084512', product: 'iPad Air (2025)', rentalPeriod: '21/07 - 21/10/2025', rentalStatus: 'In Rental', paymentStatus: 'Deposit Only' },
-  { orderCode: 'GM-58299', userName: 'Bui Thai Bao', phoneNumber: '0325590357', product: 'Galaxy Tab S10 FE', rentalPeriod: '15/07 - 15/12/2025', rentalStatus: 'Cancelled', paymentStatus: 'Deposit Only' },
+  { 
+    orderCode: 'GM-00124', 
+    userName: 'Nguyen Van Thang', 
+    phoneNumber: '0376533590', 
+    email: 'thang.nv@gmail.com',
+    address: '123 Le Loi, District 1, HCM City',
+    product: 'iPhone Air 2', 
+    rentalPeriod: '01/03 - 31/03/2025', 
+    rentalStatus: 'In Rental', 
+    paymentStatus: 'Deposit Only',
+    totalAmount: '2,500,000 VND',
+    deposit: '500,000 VND',
+    orderDate: '25/02/2025'
+  },
+  { orderCode: 'GM-22512', userName: 'Nguyen Van Hoang', phoneNumber: '0387690331', product: 'Nintendo Switch 2', rentalPeriod: '01/02 - 28/02/2025', rentalStatus: 'Shipping', paymentStatus: 'Deposit Only', totalAmount: '1,200,000 VND', deposit: '300,000 VND', orderDate: '28/01/2025' },
+  { orderCode: 'GM-03204', userName: 'Nguyen Minh Anh', phoneNumber: '0385201625', product: 'Playstation 5 Pro', rentalPeriod: '05/01 - 05/02/2025', rentalStatus: 'Shipping', paymentStatus: 'Paid', totalAmount: '3,000,000 VND', deposit: '0 VND', orderDate: '01/01/2025' },
 ];
 
-// Helper function để lấy class màu cho từng trạng thái
 const getStatusClasses = (status) => {
   switch (status) {
     case 'Delivered': return 'bg-green-100 text-green-800';
@@ -29,144 +45,155 @@ const getStatusClasses = (status) => {
 };
 
 const OrdersPage = () => {
-  // State để lưu trữ giá trị của các bộ lọc
-  const [selectedRentalState, setSelectedRentalState] = useState('All');
-  const [selectedPaymentStatus, setSelectedPaymentStatus] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
-  // State để lưu danh sách đơn hàng đã được lọc để hiển thị
-  const [filteredOrders, setFilteredOrders] = useState(mockOrders);
-
-  // Mảng các tùy chọn cho bộ lọc
-  const rentalStateOptions = ['All', 'In Rental', 'Shipping', 'Delivered', 'Pending Return', 'Returned', 'Cancelled'];
-  const paymentStatusOptions = ['All', 'Paid', 'Deposit Only'];
-
-  // Sử dụng useEffect để lọc lại danh sách đơn hàng mỗi khi bộ lọc hoặc ô tìm kiếm thay đổi
-  useEffect(() => {
-    let result = mockOrders;
-
-    // Lọc theo Rental State
-    if (selectedRentalState !== 'All') {
-      result = result.filter(order => order.rentalStatus === selectedRentalState);
-    }
-
-    // Lọc theo Payment Status
-    if (selectedPaymentStatus !== 'All') {
-      result = result.filter(order => order.paymentStatus === selectedPaymentStatus);
-    }
-    
-    // Lọc theo từ khóa tìm kiếm (tên, sđt, mã đơn hàng)
-    if (searchQuery) {
-        result = result.filter(order =>
-            order.userName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            order.phoneNumber.includes(searchQuery) ||
-            order.orderCode.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-    }
-
-    setFilteredOrders(result);
-  }, [selectedRentalState, selectedPaymentStatus, searchQuery]); // Phụ thuộc vào các state này
+  const handleViewDetails = (order) => {
+    setSelectedOrder(order);
+    setIsModalOpen(true);
+  };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      {/* Header: Search và Filters */}
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 font-sans min-h-screen">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">Orders Management</h1>
+
+      {/* Search & Filter */}
       <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
-        <div className="relative w-full sm:w-auto">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+        <div className="relative flex-1 max-w-md">
+          <IoSearchOutline className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
-            placeholder="Search by name, phone, code..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full sm:w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4A8D8C]"
+            placeholder="Search orders..."
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4A8D8C] outline-none"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex items-center flex-wrap gap-4">
-          <button className="flex items-center px-4 py-2 border rounded-md text-gray-600 hover:bg-gray-50">
-            <FunnelIcon className="h-5 w-5 mr-2" />
-            Filter
-          </button>
-          
-          {/* ----- BỘ LỌC RENTAL STATE ----- */}
-          <select
-            value={selectedRentalState}
-            onChange={(e) => setSelectedRentalState(e.target.value)}
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A8D8C]"
-          >
-            <option value="All" disabled>Rental State: All</option>
-            {rentalStateOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-
-          {/* ----- BỘ LỌC PAYMENT STATUS ----- */}
-          <select
-            value={selectedPaymentStatus}
-            onChange={(e) => setSelectedPaymentStatus(e.target.value)}
-            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4A8D8C]"
-          >
-             <option value="All" disabled>Payment status: All</option>
-            {paymentStatusOptions.map(option => (
-              <option key={option} value={option}>{option === 'Paid' ? 'Paid (All)' : option}</option>
-            ))}
-          </select>
-        </div>
+        <button className="flex items-center px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">
+          <IoFilterOutline className="mr-2" /> Filter
+        </button>
       </div>
 
-      {/* Bảng dữ liệu Orders */}
-      <div className="overflow-x-auto">
+      {/* Bảng dữ liệu */}
+      <div className="overflow-x-auto rounded-lg border border-gray-100">
         <table className="min-w-full divide-y divide-gray-200">
-          {/* ... thead giữ nguyên ... */}
           <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order code</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone number</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rental Period</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rental Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            <tr className="text-left text-xs font-bold text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4">Order Code</th>
+              <th className="px-6 py-4">Customer</th>
+              <th className="px-6 py-4">Product</th>
+              <th className="px-6 py-4">Status</th>
+              <th className="px-6 py-4 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {filteredOrders.length > 0 ? (
-              filteredOrders.map((order) => (
-                <tr key={order.orderCode} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{order.orderCode}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.userName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.phoneNumber}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.product}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.rentalPeriod}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(order.rentalStatus)}`}>
-                      {order.rentalStatus}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.paymentStatus}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button className="flex items-center text-gray-600 hover:text-[#4A8D8C]">
-                      <EyeIcon className="h-5 w-5 mr-1" />
-                      View details
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="8" className="text-center py-10 text-gray-500">
-                  No orders found matching your criteria.
+          <tbody className="bg-white divide-y divide-gray-100">
+            {mockOrders.map((order) => (
+              <tr key={order.orderCode} className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-[#4A8D8C]">{order.orderCode}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-semibold text-gray-900">{order.userName}</div>
+                  <div className="text-xs text-gray-400">{order.phoneNumber}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{order.product}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span className={`px-3 py-1 text-[10px] font-bold rounded-full uppercase ${getStatusClasses(order.rentalStatus)}`}>
+                    {order.rentalStatus}
+                  </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <button 
+                    onClick={() => handleViewDetails(order)}
+                    className="inline-flex items-center text-[#4A8D8C] hover:text-teal-700 font-bold text-xs gap-1"
+                  >
+                    <IoEyeOutline size={16} />
+                    DETAILS
+                  </button>
                 </td>
               </tr>
-            )}
+            ))}
           </tbody>
         </table>
       </div>
 
-      {/* Pagination (giữ nguyên) */}
-      <div className="flex items-center justify-end mt-6">
-        {/* ... */}
-      </div>
+      {/* --- MODAL VIEW DETAILS --- */}
+      {isModalOpen && selectedOrder && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}></div>
+          
+          {/* Modal Box */}
+          <div className="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in duration-200">
+            
+            {/* Header */}
+            <div className="px-6 py-4 border-b flex justify-between items-center bg-gray-50">
+              <div>
+                <h2 className="text-xl font-bold text-gray-800">Order #{selectedOrder.orderCode}</h2>
+                <p className="text-xs text-gray-500 flex items-center gap-1">
+                  <IoCalendarOutline /> Placed on {selectedOrder.orderDate}
+                </p>
+              </div>
+              <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-gray-200 rounded-full">
+                <IoCloseOutline size={24} className="text-gray-500" />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 overflow-y-auto space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Cột 1 */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Customer</h3>
+                    <p className="font-bold text-gray-800">{selectedOrder.userName}</p>
+                    <p className="text-sm text-gray-600">{selectedOrder.phoneNumber}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{selectedOrder.address}</p>
+                  </div>
+                  <div>
+                    <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Rental Status</h3>
+                    <span className={`px-3 py-1 text-[10px] font-bold rounded-full uppercase ${getStatusClasses(selectedOrder.rentalStatus)}`}>
+                      {selectedOrder.rentalStatus}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Cột 2 */}
+                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                  <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Order Summary</h3>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Product:</span>
+                      <span className="font-semibold text-gray-900">{selectedOrder.product}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Period:</span>
+                      <span className="font-medium">{selectedOrder.rentalPeriod}</span>
+                    </div>
+                    <div className="border-t pt-2 mt-2 flex justify-between font-bold text-[#4A8D8C]">
+                      <span>Total:</span>
+                      <span>{selectedOrder.totalAmount}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Demo */}
+              <div className="flex gap-3 pt-4">
+                <button className="flex-1 bg-[#4A8D8C] text-white py-2 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-[#3a7170]">
+                  <IoCheckmarkDoneCircleOutline size={20} /> Update Status
+                </button>
+                <button className="px-4 py-2 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 flex items-center gap-2">
+                  <IoPrintOutline size={20} /> Print
+                </button>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 border-t bg-gray-50 text-right">
+              <button onClick={() => setIsModalOpen(false)} className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-bold text-sm">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
