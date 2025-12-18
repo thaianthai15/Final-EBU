@@ -194,8 +194,7 @@ const Header = () => {
                   <div className="absolute top-4 right-0 mt-3 w-60 bg-white border border-gray-200 rounded-xl shadow-lg z-20 py-2">
                     <div className="flex flex-col">
                       <Link to="/gimo-care" className="px-5 py-3 text-md font-bold text-gray-700 hover:bg-gray-50 hover:text-black transition-colors text-left">Gimo Care</Link>
-                      <Link to="#" className="px-5 py-3 text-md font-bold text-gray-700 hover:bg-gray-50 hover:text-black transition-colors text-left">Invite Friends</Link>
-                      <Link to="/discount" className="px-5 py-3 text-md font-bold text-gray-700 hover:bg-gray-50 hover:text-black transition-colors text-left">Student Discount</Link>
+                      <Link to="/discount" className="px-5 py-3 text-md font-bold text-gray-700 hover:bg-gray-50 hover:text-black transition-colors text-left">Discount Voucher</Link>
                     </div>
                     <div className="border-t border-gray-100 my-1"></div>
                     <div className="flex flex-col">

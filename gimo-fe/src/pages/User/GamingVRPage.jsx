@@ -72,10 +72,6 @@ const GamingVRPage = () => {
 
         {/* Top Category Chips (like in the original image) */}
         <div className="flex gap-4 mb-8 overflow-x-auto pb-2 items-center">
-          <div className="flex items-center space-x-2">
-            <button className="p-2 border rounded-full hover:bg-gray-100 hidden sm:block"><IoHeartOutline size={16} className="rotate-90" /></button>
-            <button className="p-2 border rounded-full hover:bg-gray-100 hidden sm:block"><IoHeartOutline size={16} className="-rotate-90" /></button>
-          </div>
           <div className="flex gap-4">
             <div className="flex-shrink-0 w-32 h-28 bg-white border border-gray-200 rounded-lg flex flex-col items-center justify-center p-2 text-center text-sm font-medium shadow-sm hover:shadow-md cursor-pointer">
               <img src="src/assets/images/PS5_Mobile__2_.webp" alt="PS5" className="h-16 mb-1" />

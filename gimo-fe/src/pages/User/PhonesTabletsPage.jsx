@@ -78,11 +78,6 @@ const PhonesTabletsPage = () => {
 
         {/* Top Category Chips (like in the original image) */}
         <div className="flex gap-4 mb-8 overflow-x-auto pb-2 items-center">
-          {/* Navigational buttons for categories (similar to the image) */}
-          <div className="flex items-center space-x-2"> {/* Added flex and space-x for better alignment */}
-            <button className="p-2 border rounded-full hover:bg-gray-100 hidden sm:block"><IoHeartOutline size={16} className="rotate-90" /></button> {/* Placeholder for left arrow if needed */}
-            <button className="p-2 border rounded-full hover:bg-gray-100 hidden sm:block"><IoHeartOutline size={16} className="-rotate-90" /></button> {/* Placeholder for right arrow if needed */}
-          </div>
 
           {/* The main category chips with images */}
           <div className="flex gap-4">
