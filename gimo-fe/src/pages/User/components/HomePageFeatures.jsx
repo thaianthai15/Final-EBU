@@ -46,7 +46,7 @@ const mostPopularData = [
     specs: "NVIDIA® GeForce® RTX™ 5060, 32GB, 1TB SSD",
     price: "74.90",
     image: "https://res.cloudinary.com/grover/image/upload/e_trim/f_webp,q_auto/b_white,c_pad,h_300,w_300/f_auto,q_auto/v1750925641/sx8nla5tlbqywztxnnre.png",
-    tag: "NEW TO GROVER",
+    tag: "NEW TO GIMO",
   },
 ];
 
@@ -57,7 +57,7 @@ const newArrivalsData = [
     specs: "M5, Liquid Retina XDR ProMotion 14.2-inch, Keyboard - English",
     price: "89.90",
     image: "src/assets/images/rent_pro_17.webp",
-    tag: "NEW TO GROVER",
+    tag: "NEW TO GIMO",
   },
   {
     id: 6,
@@ -65,7 +65,7 @@ const newArrivalsData = [
     specs: "",
     price: "32.90",
     image: "https://res.cloudinary.com/grover/image/upload/e_trim/f_webp,q_auto/b_white,c_pad,h_300,w_300/f_auto,q_auto/v1699020029/uhyf7w6cqacgr638tolh.png",
-    tag: "NEW TO GROVER",
+    tag: "NEW TO GIMO",
   },
   {
     id: 7,
@@ -73,7 +73,7 @@ const newArrivalsData = [
     specs: "",
     price: "39.90",
     image: "https://res.cloudinary.com/grover/image/upload/e_trim/f_webp,q_auto/b_white,c_pad,h_300,w_300/f_auto,q_auto/v1761137846/szi1qxdcpqvzqq9njcgn.png",
-    tag: "NEW TO GROVER",
+    tag: "NEW TO GIMO",
   },
   {
     id: 8,
@@ -81,7 +81,7 @@ const newArrivalsData = [
     specs: "11\" Ultra Retina XDR Display, Apple M5, 12GB RAM, WiFi",
     price: "54.90",
     image: "https://res.cloudinary.com/grover/image/upload/e_trim/f_webp,q_auto/b_white,c_pad,h_300,w_300/f_auto,q_auto/v1761233551/pptoi1metnhrv1mumzg2.png",
-    tag: "NEW TO GROVER",
+    tag: "NEW TO GIMO",
   },
 ];
 
@@ -317,7 +317,7 @@ const HomePageFeatures = () => {
       {/* 4. GETTING STARTED */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader title="Getting started with Grover" />
+          <SectionHeader title="Getting started with Gimo" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {gettingStartedSteps.map((item) => (
               <div key={item.step} className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col">
@@ -347,7 +347,7 @@ const HomePageFeatures = () => {
       {/* 5. RENT SAFELY */}
       <section className="text-center container mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-sm font-semibold text-gray-500 tracking-wider">500.000+ RENTERS</p>
-        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-12">Rent safely with Grover</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-12">Rent safely with Gimo</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {safetyFeatures.map((feature) => (
             <div key={feature.title} className="flex flex-col items-center">

@@ -67,7 +67,7 @@ const GamingVRPage = () => {
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-extrabold mb-4">Rent Gaming & VR</h1>
         <p className="text-gray-600 max-w-3xl mb-8">
-          For the win: Whether your couch already has a gaming dent or you're new to the gaming universe, you can rent game consoles, VR headsets, and gaming accessories flexibly and effortlessly at Grover. We have the latest tech for you.
+          For the win: Whether your couch already has a gaming dent or you're new to the gaming universe, you can rent game consoles, VR headsets, and gaming accessories flexibly and effortlessly at Gimo. We have the latest tech for you.
         </p>
 
         {/* Top Category Chips (like in the original image) */}

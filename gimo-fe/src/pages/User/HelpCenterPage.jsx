@@ -61,7 +61,7 @@ const immediateAnswersData = [
     icon: <FiZap size={24} />,
     title: "Gimo Business",
     links: [
-      "Grover Business Premium",
+      "Gimo Business Premium",
       "Combining subscription payments [consolidated billing]",
     ],
   },

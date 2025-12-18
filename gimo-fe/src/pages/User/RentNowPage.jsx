@@ -448,7 +448,7 @@ const RentNowPage = () => {
               <h3 className="text-4xl font-black text-gray-900 mb-2">FEST50</h3>
               <p className="text-gray-600 text-sm">
                 Use the voucher FEST50 to get €50 off your first month as a new
-                Grover user.
+                Gimo user.
               </p>
             </div>
             <div className="border border-gray-200 rounded-xl p-8 text-center shadow-sm">

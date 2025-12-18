@@ -25,7 +25,7 @@ export const products = [
     id: 2,
     name: 'Apple iPhone 17 Pro - 256GB',
     image: top2,
-    tags: ['NEW TO GROVER'],
+    tags: ['NEW TO GIMO'],
     specs: '6.3" LTPO Super Retina XDR OLED, Triple Rear Camera, 12GB RAM, Apple A19 Pro, 5G',
     originalPrice: null,
     currentPrice: 99.90,

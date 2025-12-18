@@ -23,7 +23,7 @@ export const blogPosts = [
   {
     id: 1,
     tag: "GEAR",
-    title: "What is AI tech—and which devices are worth renting with Grover?",
+    title: "What is AI tech—and which devices are worth renting with Gimo?",
     description: "If you're thinking about starting your own podcast—or you're looking to take your game to the next level—...",
     image: blogMain1,
     bgColor: "bg-yellow-100",
@@ -80,7 +80,7 @@ export const blogPosts = [
     id: 8,
     tag: "GEAR",
     title: "How to find the right iPhone 15 model for you",
-    description: "The new iPhone 15 series was recently released and is ready to rent from Grover. The question that...",
+    description: "The new iPhone 15 series was recently released and is ready to rent from Gimo. The question that...",
     image: blogMain8,
     bgColor: "bg-gray-100",
   },
