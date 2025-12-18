@@ -36,7 +36,6 @@ const LoginPage = () => {
       // Đăng nhập thành công
       localStorage.setItem('userRole', 'USER');
       localStorage.setItem('isLoggedIn', 'true');
-
       // Lưu thông tin người đang đăng nhập để hiển thị lên Header (Xin chào, ...)
       localStorage.setItem('currentUser', JSON.stringify(validUser));
 

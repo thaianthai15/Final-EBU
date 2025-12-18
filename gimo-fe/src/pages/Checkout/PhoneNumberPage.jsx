@@ -18,7 +18,6 @@ const PhoneNumberPage = () => {
           <p className="text-gray-500 mb-6">
             We need your phone number for secure logins. You'll get a verification code via SMS.
           </p>
-
           <div className="mb-4">
             <label className="text-sm font-medium text-gray-700">Country code</label>
             <div className="relative mt-1">

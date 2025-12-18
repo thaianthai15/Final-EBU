@@ -65,7 +65,6 @@ const ProductsPage = () => {
 
       {/* --- CONTROLS BAR --- */}
       <div className="flex flex-col lg:flex-row justify-between items-center mb-6 gap-4 bg-gray-50 p-4 rounded-lg border border-gray-100">
-
         {/* Search */}
         <div className="relative w-full lg:w-1/3">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -83,7 +82,6 @@ const ProductsPage = () => {
           <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
             <FaFilter /> Filter
           </button>
-
           <select className="px-4 py-2.5 bg-white border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#4A8D8C] cursor-pointer">
             <option>Category: All</option>
             <option>Phones</option>
@@ -179,7 +177,6 @@ const ProductsPage = () => {
         <button className="w-8 h-8 flex items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors disabled:opacity-50">
           <FaAngleLeft />
         </button>
-
         <button className="w-8 h-8 flex items-center justify-center rounded bg-[#4A8D8C] text-white font-medium shadow-md">
           1
         </button>
